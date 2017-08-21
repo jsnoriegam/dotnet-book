@@ -1,4 +1,6 @@
-# Crear un proyecto
+# Crear, compilar y ejecutar un proyecto
+
+## Crear un proyecto
 
 Para crear un proyecto con .NET Core debemos crear un directorio, y en una consola dentro del mismo ejecutamos el comando:
 
@@ -32,7 +34,7 @@ Puesto que nuestro objetivo es crear una API web generaremos nuestro proyecto co
 
 El comando debe crear la estructura de directorios, el archivo &lt;Nombre-del-proyecto&gt;.csproj, Program.cs, Startup.cs, los archivos de configuración y un contralador de prueba.
 
-# Compilar y ejecutar un proyecto
+## Compilar y ejecutar un proyecto
 
 Para compilar nustro proyeco simplemente ejecutamos el comando:
 
@@ -48,7 +50,7 @@ dotnet run
 
 Esto aplica tanto para proyectos web como para consolas.
 
-# Watcher
+## Watcher
 
 El proceso de detener la aplicacion compilarla y volverla a ejecutar cada vez que se hace un cambio puede resultar tedioso, por lo que es recomendable agregar la siguiente herramienta al .csproj:
 
@@ -63,6 +65,4 @@ dotnet watch
 ```
 
 El cual se encarga de ejecutar el proyecto y se mantiene activo en background y cuando detecta un cambio se encarga de detener, recompilar y volver a ejecutar.
-
-
 
