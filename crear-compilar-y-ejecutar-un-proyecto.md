@@ -34,6 +34,8 @@ Puesto que nuestro objetivo es crear una API web generaremos nuestro proyecto co
 
 El comando debe crear la estructura de directorios, el archivo &lt;Nombre-del-proyecto&gt;.csproj, Program.cs, Startup.cs, los archivos de configuración y un contralador de prueba.
 
+El lenguage predeterminado de .NET Core es C\#, pero se puede utilizar VB o F\# aunque no estan disponibles para todas las plantillas
+
 ## Compilar y ejecutar un proyecto
 
 Para compilar nustro proyeco simplemente ejecutamos el comando:
@@ -49,6 +51,10 @@ dotnet run
 ```
 
 Esto aplica tanto para proyectos web como para consolas.
+
+## .csproj
+
+Como se mencionó anteriormente uno de los archivos generados dentro del proyecto es &lt;Nombre-del-proyecto&gt;.csproj, Ej. Peliculas.csproj.
 
 ## Watcher
 
