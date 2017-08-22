@@ -1,8 +1,10 @@
 # Construcción de la API web
 
+Para el desarrollo de este documento crearemos una API web para llevar una base de datos de películas \(Como IMDB pero edición ligera\)
+
 ## Startup.cs
 
-Cada proyecto web contiene una Clase Startup en la cual se realizarán las configuraciones globales del proyecto como servicios y filtros.
+Cada proyecto web debe contener una Clase Startup en la cual se realizarán las configuraciones globales y ser referenciaran los servicios, filtros y/o middlewares que el proyecto necesite.
 
 ```csharp
 using System;
