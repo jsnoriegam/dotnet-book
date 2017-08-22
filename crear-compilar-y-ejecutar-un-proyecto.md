@@ -56,6 +56,29 @@ Esto aplica tanto para proyectos web como para consolas.
 
 Como se mencionó anteriormente uno de los archivos generados dentro del proyecto es &lt;Nombre-del-proyecto&gt;.csproj, Ej. Peliculas.csproj.
 
+```xml
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
+  </ItemGroup>
+
+</Project>
+
+```
+
 ## Watcher
 
 El proceso de detener la aplicacion compilarla y volverla a ejecutar cada vez que se hace un cambio puede resultar tedioso, por lo que es recomendable agregar la siguiente herramienta al .csproj:
