@@ -221,8 +221,6 @@ El DbContext debe ser registrado en la clase Startup para que pueda ser utilizad
 
 ### 3.1.2 Dotnet ef
 
-
-
 ### 3.4 Servicios
 
 Para crear un servicio solo se debe crear una una interface y por lo menos una implementación con sus correspondientes métodos.
@@ -241,11 +239,11 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
+_Para el caso del proyecto de ejemplo vamos a trabajar con los repositorios como con servicios comunes, puesto que son pocos y no hay procesos que involucren varias entidades, pero es recomendable sobre todo para proyectos mediamos y/o grandes, establecer una clara separación entre servicios y repositorios._
+
 ### 3.4.2 Repositorios
 
 Los Repositorios son un tipo especial de servicios cuya finalidad es exponer las operaciones básicas de los repositorios de datos \(tablas\).
-
-_Para el caso del proyecto de ejemplo vamos a manejar los repositorios como servicios comunes, puesto que son pocos y no ha procesos que involucren varias entidades, pero es recomendable sobre todo para proyectos mediamos o grandes, establecer una separación entre servicios y repositorios._
 
 ### 3.4.2 Inyección de dependencias
 
@@ -265,6 +263,8 @@ public class PeliculasController : Controller
     .
 }
 ```
+
+La inyección de IPeliculasService se hace automáticamente si la implementación esta registrada en Startup.
 
 ## 3.5 Todo en acción
 
