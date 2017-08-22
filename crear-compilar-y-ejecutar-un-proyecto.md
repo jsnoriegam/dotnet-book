@@ -76,8 +76,9 @@ Como se mencionó anteriormente uno de los archivos generados dentro del proyect
   </ItemGroup>
 
 </Project>
-
 ```
+
+Este archivo contiene las configuraciones basicas de construcción del proyecto asi como las referencias a las librerias y herramientas asociadas al mismo.
 
 ## Watcher
 
