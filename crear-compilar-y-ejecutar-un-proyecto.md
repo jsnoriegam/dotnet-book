@@ -1,6 +1,6 @@
 # Crear, compilar y ejecutar un proyecto
 
-## Crear un proyecto
+## 2.1 Crear un proyecto
 
 Para crear un proyecto con .NET Core debemos crear un directorio, y en una consola dentro del mismo ejecutamos el comando:
 
@@ -36,23 +36,7 @@ El comando debe crear la estructura de directorios, el archivo &lt;Nombre-del-pr
 
 El lenguage predeterminado de .NET Core es C\#, pero se puede utilizar VB o F\# aunque no estan disponibles para todas las plantillas
 
-## Compilar y ejecutar un proyecto
-
-Para compilar nustro proyeco simplemente ejecutamos el comando:
-
-```
-dotnet build
-```
-
-Si la compilación no presenta ningún error podemos ejecutar nuestro proyecto utilizando:
-
-```
-dotnet run
-```
-
-Esto aplica tanto para proyectos web como para consolas.
-
-## .csproj
+### 2.1.1 .csproj
 
 Como se mencionó anteriormente uno de los archivos generados dentro del proyecto es &lt;Nombre-del-proyecto&gt;.csproj, Ej. Peliculas.csproj.
 
@@ -80,7 +64,23 @@ Como se mencionó anteriormente uno de los archivos generados dentro del proyect
 
 Este archivo contiene las configuraciones basicas de construcción del proyecto asi como las referencias a las librerias y herramientas asociadas al mismo.
 
-## Watcher
+## 2.2 Compilar y ejecutar un proyecto
+
+Para compilar nustro proyeco simplemente ejecutamos el comando:
+
+```
+dotnet build
+```
+
+Si la compilación no presenta ningún error podemos ejecutar nuestro proyecto utilizando:
+
+```
+dotnet run
+```
+
+Esto aplica tanto para proyectos web como para consolas.
+
+## 2.3 Watcher
 
 El proceso de detener la aplicacion compilarla y volverla a ejecutar cada vez que se hace un cambio puede resultar tedioso, por lo que es recomendable agregar la siguiente herramienta al .csproj:
 

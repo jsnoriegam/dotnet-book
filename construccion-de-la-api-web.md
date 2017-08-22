@@ -108,11 +108,13 @@ namespace Peliculas.Controllers
 
 En este controlador podemos ver que mediante el atributo Route establecemos la ruta a la cual responderá el controlador, además vemos como cada método esta marcado con atributos que identifican a que verbo HTTP responderán.
 
-En el ejemplo podemos ver la ruta: **"api/\[controller\]"**, esta ruta es especial porque referencia el nombre del controlador, es decir, para acceder a este controlador debemos ir a http://&lt;dirección-del-servicio&gt;/api/values.  Para que esto funcione el nombre de la clase debe terminar con Controller.
+En el ejemplo podemos ver la ruta: **"api/\[controller\]"**, esta ruta es especial porque referencia el nombre del controlador, es decir, para acceder a este controlador debemos ir a [http://&lt;dirección-del-servicio&gt;/api/values](http://<dirección-del-servicio>/api/values).  Para que esto funcione el nombre de la clase debe terminar con Controller.
+
+El proyecto esta configurado para serializar los arreglos/objetos retornados por los métodos del controlador a JSON y para deserializar el cuerpo de las peticiones JSON al tipo correspondiente.
 
 ### IActionResult
 
- 
+En el ejemplo anterior podemos ver como los métodos 
 
 ## DbContext
 
@@ -121,6 +123,12 @@ Para poder trabajar con Entity Framework para el manejo de nuestras entidades y 
 ## Entidades
 
 ## Servicios
+
+Crear un servicio implica solo crear una clase con sus correspondientes métodos
+
+### Inyección de dependencias
+
+## Todo en acción
 
 
 
