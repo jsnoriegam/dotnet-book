@@ -108,7 +108,17 @@ namespace Peliculas.Controllers
 
 En este controlador podemos ver que mediante el atributo Route establecemos la ruta a la cual responderá el controlador, además vemos como cada método esta marcado con atributos que identifican a que verbo HTTP responderán.
 
+En el ejemplo podemos ver la ruta: **"api/\[controller\]"**, esta ruta es especial porque referencia el nombre del controlador, es decir, para acceder a este controlador debemos ir a http://&lt;dirección-del-servicio&gt;/api/values.  Para que esto funcione el nombre de la clase debe terminar con Controller.
+
+### IActionResult
+
+ 
+
 ## DbContext
+
+Para poder trabajar con Entity Framework para el manejo de nuestras entidades y base de datos es necesario crear una clase que extienda de DbContext
+
+## Entidades
 
 ## Servicios
 
