@@ -129,7 +129,7 @@ La referencia **Microsoft.AspNetCore.All** del .csproj incluye todas las libreri
 </ItemGroup>
 ```
 
-Estas referencias nos permiten 
+Estas referencias nos permiten
 
 Para mayor profundización del tema puede visitar: [http://www.learnentityframeworkcore.com](http://www.learnentityframeworkcore.com)
 
@@ -181,7 +181,7 @@ Tambien podemos marcar ciertas propiedades con atributos para definir llaves for
 
 ### 3.3.1 DbContext
 
-Para poder trabajar con Entity Framework para el manejo de nuestras entidades y base de datos es necesario crear una clase que extienda de DbContext.
+Para poder trabajar con Entity Framework para el manejo de nuestras entidades y conexiones a bases de datos es necesario crear una clase que extienda de DbContext.
 
 Esta clase debe referenciar todas las entidades mediante el uso de **DbSet**
 
@@ -205,9 +205,9 @@ public class PeliculasContext : DbContext
 }
 ```
 
-Cada DbSet referenciará una tabla en la base de datos.
+Cada DbSet representará una tabla en la base de datos.
 
-Lo ideal es no asociar el DbContext con ningún conector de base de datos en particular.
+Lo ideal es no asociar el DbContext con ningún conector de base de datos en particular, en especial si se va a utilizar el mismo DbContext para pruebas unitarias.
 
 El DbContext debe ser registrado en la clase Startup para que pueda ser utilizado por los repositorios.  En este momento se establece que motor de base de datos se utilizará.
 
@@ -227,7 +227,19 @@ public void ConfigureServices(IServiceCollection services)
 
 ### 3.1.2 Dotnet ef
 
-Para transformar las entidades en una base de datos se utiliza el comando dotnet ef
+Para transformar las entidades en una base de datos se utiliza el comando dotnet ef, lo mas común es hacer migraciones para cada cambio que se haga a las entidades:
+
+```
+dotnet ef migrations add <Nombre-de-la-migracion>
+```
+
+Con este comando se creará el directorio Migrations en nuestro proyecto y las clases que permitiran la generación automática del esquema en la base de datos.
+
+Para ejecutar las migraciones se utiliza:
+
+```
+dotnet ef database update
+```
 
 ### 3.4 Servicios
 
@@ -247,11 +259,13 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-_Para el caso del proyecto de ejemplo vamos a trabajar con los repositorios como con servicios comunes, puesto que son pocos y no hay procesos que involucren varias entidades, pero es recomendable sobre todo para proyectos mediamos y/o grandes, establecer una clara separación entre servicios y repositorios._
+_Para el caso del proyecto de ejemplo vamos a trabajar con los repositorios como si se tratara de servicios, puesto que son pocos y no hay procesos que involucren varias entidades, pero es recomendable sobre todo para proyectos mediamos y/o grandes, establecer una clara separación entre servicios y repositorios._
 
 ### 3.4.2 Repositorios
 
 Los Repositorios son un tipo especial de servicios cuya finalidad es exponer las operaciones básicas de los repositorios de datos \(tablas\).
+
+Por lo general los repositorios solo tienen funciones que implican operaciones analogas a un listado: obtenerUno, obtenerTodos, agregar, reemplazar y eliminar aunque pueden tener otras mientras sean sobre la misma entidad.
 
 ### 3.4.2 Inyección de dependencias
 
