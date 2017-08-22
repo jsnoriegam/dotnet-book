@@ -114,11 +114,34 @@ El proyecto esta configurado para serializar los arreglos/objetos retornados por
 
 ### 3.2.1 IActionResult
 
-En el ejemplo anterior podemos ver como los métodos Get retornan objetos o arreglos.  Estos objetos como ya se mencioó serán transformados a JSON, pero 
+En el ejemplo anterior podemos ver como los métodos Get retornan objetos o arreglos.  Estos objetos como ya se mencioó serán transformados a JSON, pero
 
 ## 3.3 Entity Framework
 
-Par una mayor profundización de los temas puede visitar: [http://www.learnentityframeworkcore.com](http://www.learnentityframeworkcore.com)
+Para trabajar con Entity Framework debemos agregar las dependencias necesarias a nuestro .csproj
+
+```xml
+<ItemGroup>
+  .
+  .
+  <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.0.0"/>
+  <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.0.0"/>
+  <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="2.0.0-rtm-10056"/>
+</ItemGroup>
+```
+
+Además para poder utilizar las herramientas de línea de comandos debemos agregar:
+
+```xml
+<ItemGroup>
+  .
+  .
+  <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.0"/>
+  <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.0"/>
+</ItemGroup>
+```
+
+Para mayor profundización del tema puede visitar: [http://www.learnentityframeworkcore.com](http://www.learnentityframeworkcore.com)
 
 ### 3.3.2 Entidades
 
@@ -168,7 +191,37 @@ Tambien podemos marcar ciertas propiedades con atributos para definir llaves for
 
 ### 3.3.1 DbContext
 
-Para poder trabajar con Entity Framework para el manejo de nuestras entidades y base de datos es necesario crear una clase que extienda de DbContext
+Para poder trabajar con Entity Framework para el manejo de nuestras entidades y base de datos es necesario crear una clase que extienda de DbContext.
+
+Esta clase debe referenciar todas las entidades mediante el uso de **DbSet**
+
+```csharp
+public class PeliculasContext : DbContext
+{
+    //Los BbSet representarán las tablas referenciadas por cada entidad
+    public DbSet<Pelicula> Peliculas { get; set; }
+    public DbSet<Persona> Personas { get; set; }
+    public PeliculasContext(DbContextOptions<PeliculasContext> options) : base(options)
+    {
+        //Database.EnsureCreated();//Crea la BD y las tablas según el esquema actual (No actualiza!!)
+        //Database.Migrate(); //Ejecuta cualquier migración que este pendiente
+    }
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        //Sobreescriba este método para configuraciones adicionales de las entidades
+        modelBuilder.Entity<Pelicula>().HasIndex(p => p.CodigoIMDB).IsUnique();
+        base.OnModelCreating(modelBuilder);
+    }
+}
+```
+
+Cada DbSet referenciará una tabla en la base de datos.
+
+El DbContext debe ser registrado en la clase Startup para que pueda ser utilizado por los repositorios.
+
+### 3.1.2 Dotnet ef
+
+
 
 ### 3.4 Servicios
 
@@ -192,9 +245,26 @@ public void ConfigureServices(IServiceCollection services)
 
 Los Repositorios son un tipo especial de servicios cuya finalidad es exponer las operaciones básicas de los repositorios de datos \(tablas\).
 
+_Para el caso del proyecto de ejemplo vamos a manejar los repositorios como servicios comunes, puesto que son pocos y no ha procesos que involucren varias entidades, pero es recomendable sobre todo para proyectos mediamos o grandes, establecer una separación entre servicios y repositorios._
+
 ### 3.4.2 Inyección de dependencias
 
 Por defecto la inyeccion de dependencias en .NET Core se hace en los contructores
+
+```csharp
+[Route("api/v1/[controller]")]
+public class PeliculasController : Controller
+{
+    IPeliculasService PeliculasService;
+    public PeliculasController(IPeliculasService peliculasService)
+    {
+        PeliculasService = peliculasService;
+    }
+    .
+    .
+    .
+}
+```
 
 ## 3.5 Todo en acción
 
