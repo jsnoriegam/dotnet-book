@@ -106,6 +106,8 @@ namespace Peliculas.Controllers
 }
 ```
 
+En este controlador podemos ver que mediante el atributo Route establecemos la ruta a la cual responderá el controlador, además vemos como cada método esta marcado con atributos que identifican a que verbo HTTP responderán.
+
 ## DbContext
 
 ## Servicios
