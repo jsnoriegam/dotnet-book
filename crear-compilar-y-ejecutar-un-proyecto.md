@@ -64,6 +64,12 @@ Como se mencionó anteriormente uno de los archivos generados dentro del proyect
 
 Este archivo contiene las configuraciones basicas de construcción del proyecto asi como las referencias a las librerias y herramientas asociadas al mismo.
 
+Cada vez que se realice un cambio a este archivo se debe ejecutar el comando:
+
+```
+dotnet restore
+```
+
 ## 2.2 Compilar y ejecutar un proyecto
 
 Para compilar nustro proyeco simplemente ejecutamos el comando:
