@@ -2,6 +2,8 @@
 
 Para el desarrollo de este documento crearemos una API web para llevar una base de datos de películas \(Como IMDB pero edición ligera\)
 
+Solo manejaremos 2 entidades: Pelicula y Persona
+
 ## Startup.cs
 
 Cada proyecto web debe contener una Clase Startup en la cual se realizarán las configuraciones globales y ser referenciaran los servicios, filtros y/o middlewares que el proyecto necesite.
@@ -53,7 +55,9 @@ Todo servicio debe ser registrado en esta clase para que pueda ser utilizado pos
 
 ## Controladores
 
-# Servicios
+## DbContext
+
+## Servicios
 
 
 
