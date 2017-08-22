@@ -108,17 +108,15 @@ namespace Peliculas.Controllers
 
 En este controlador podemos ver que mediante el atributo Route establecemos la ruta a la cual responderá el controlador, además vemos como cada método esta marcado con atributos que identifican a que verbo HTTP responderán.
 
-En el ejemplo podemos ver la ruta: **"api/\[controller\]"**, esta ruta es especial porque referencia el nombre del controlador, es decir, para acceder a este controlador debemos ir a [http://&lt;dirección-del-servicio&gt;/api/values](http://<dirección-del-servicio>/api/values).  Para que esto funcione el nombre de la clase debe terminar con Controller.
+En el ejemplo podemos ver la ruta: **"api/\[controller\]"**, esta ruta es especial porque referencia el nombre del controlador, es decir, para acceder a este controlador debemos ir a http://&lt;dirección-del-servicio&gt;/api/values.  Para que esto funcione el nombre de la clase debe terminar con Controller.
 
 El proyecto esta configurado para serializar los arreglos/objetos retornados por los métodos del controlador a JSON y para deserializar el cuerpo de las peticiones JSON al tipo correspondiente.
 
 ### 3.2.1 IActionResult
 
-En el ejemplo anterior podemos ver como los métodos Get retornan objetos o arreglos.  Estos objetos como ya se mencioó serán transformados a JSON, pero
+En el ejemplo anterior podemos ver como los métodos Get retornan objetos o arreglos.  Estos objetos como ya se menció serán transformados a JSON, pero ¿qué pasa si necesitamos mas control sobre las respuestas? Por ejemplo, ¿como hacemos para 
 
 ## 3.3 Entity Framework
-
-
 
 ```xml
 <ItemGroup>
