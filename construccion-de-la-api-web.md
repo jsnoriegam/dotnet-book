@@ -118,19 +118,7 @@ En el ejemplo anterior podemos ver como los métodos Get retornan objetos o arre
 
 ## 3.3 Entity Framework
 
-Para trabajar con Entity Framework debemos agregar las dependencias necesarias a nuestro .csproj
 
-```xml
-<ItemGroup>
-  .
-  .
-  <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.0.0"/>
-  <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.0.0"/>
-  <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="2.0.0-rtm-10056"/>
-</ItemGroup>
-```
-
-Además para poder utilizar las herramientas de línea de comandos debemos agregar:
 
 ```xml
 <ItemGroup>
@@ -217,9 +205,27 @@ public class PeliculasContext : DbContext
 
 Cada DbSet referenciará una tabla en la base de datos.
 
-El DbContext debe ser registrado en la clase Startup para que pueda ser utilizado por los repositorios.
+Lo ideal es no asociar el DbContext con ningún conector de base de datos en particular.
+
+El DbContext debe ser registrado en la clase Startup para que pueda ser utilizado por los repositorios.  En este momento se establece que motor de base de datos se utilizará.
+
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    var connectionString = Configuration.GetConnectionString("MySql");
+    // Add framework services.
+    services.AddDbContext<PeliculasContext>(options =>
+        options.UseMySql(connectionString)
+    );
+    .
+    .
+    .
+}
+```
 
 ### 3.1.2 Dotnet ef
+
+Para transformar las entidades en una base de datos se utiliza el comando dotnet ef
 
 ### 3.4 Servicios
 
@@ -268,104 +274,5 @@ La inyección de IPeliculasService se hace automáticamente si la implementació
 
 ## 3.5 Todo en acción
 
-```csharp
-[Route("api/v1/[controller]")]
-public class PeliculasController : Controller
-{
-    IPeliculasService PeliculasService;
-    public PeliculasController(IPeliculasService peliculasService)
-    {
-        PeliculasService = peliculasService;
-    }
-
-    /// <summary>
-    /// Obtener una película
-    /// </summary>
-    /// <param name="id">Database Id de la película solicitada</param>
-    [HttpGet("{id}")]
-    public IActionResult Get([FromRoute] int id)
-    {
-        PeliculaWrapperView pelicula = PeliculasService.Obtener(id);
-        if (pelicula != null)
-        {
-            return Ok(pelicula);
-        }
-        else
-        {
-            return NotFound();
-        }
-    }
-
-    /// <summary>
-    /// Obtener listado de películas
-    /// </summary>
-    [HttpGet]
-    public IActionResult Get()
-    {
-        List<PeliculaWrapperView> peliculas = PeliculasService.ObtenerListado();
-        if (peliculas != null && peliculas.Count > 0)
-        {
-            return Ok(peliculas);
-        }
-        else
-        {
-            return NoContent();
-        }
-    }
-
-    /// <summary>
-    /// Ingresar una película
-    /// </summary>
-    [HttpPost]
-    public IActionResult Post([FromBody] Pelicula pelicula)
-    {
-        if (ModelState.IsValid)
-        {
-            PeliculasService.Agregar(pelicula);
-            return Ok();
-        }
-        else
-        {
-            // Utilizo ToDictionary para obtener solo los datos relevantes del ModelState
-            // Para usar ToDictionary se requere System.Linq
-            return StatusCode(409, ModelState.ToDictionary(
-                ma => ma.Key,
-                ma => ma.Value.Errors.Select(e => e.ErrorMessage).ToList()
-            ));
-        }
-    }
-
-    /// <summary>
-    /// Modificar una película
-    /// </summary>
-    [HttpPut("{id}")]
-    public IActionResult Put([FromRoute] int id, [FromBody] Pelicula pelicula)
-    {
-        if (ModelState.IsValid)
-        {
-            PeliculasService.Modificar(id, pelicula);
-            return Ok();
-        }
-        else
-        {
-            return StatusCode(409, ModelState.ToDictionary(
-                ma => ma.Key,
-                ma => ma.Value.Errors.Select(e => e.ErrorMessage).ToList()
-            ));
-        }
-    }
-
-    /// <summary>
-    /// Eliminar una película
-    /// </summary>
-    [HttpDelete("{id}")]
-    public IActionResult Delete([FromRoute] int id)
-    {
-        PeliculasService.Eliminar(id);
-        return Ok();
-    }
-}
-```
-
-
+El proyecto de ejemplo lo puede encontrar en github:
 
