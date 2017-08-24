@@ -269,7 +269,7 @@ Por lo general los repositorios solo tienen funciones que implican operaciones a
 
 ### 3.4.2 Inyección de dependencias
 
-Por defecto la inyeccion de dependencias en .NET Core se hace en los contructores
+Por defecto la inyeccion de dependencias en .NET Core se hace en los contructores, solo es necesario definir el servicio a inyectar como parámetro del constructor y el framework se encargará del resto.
 
 ```csharp
 [Route("api/v1/[controller]")]
