@@ -219,6 +219,16 @@ Lo ideal es no asociar el DbContext con ningún conector de base de datos en par
 
 El DbContext debe ser registrado en la clase Startup para que pueda ser utilizado por los repositorios.  En este momento se establece que motor de base de datos se utilizará.
 
+Las cadenas de conexión podemos registrarla en appsettings.json:
+
+```json
+"ConnectionStrings": {
+    "MySql": "Server=localhost; UserId=root; Password=; Database=peliculas"
+}
+```
+
+Y luego dentro de **ConfigureServices **agregamos lo siguiente:
+
 ```csharp
 public void ConfigureServices(IServiceCollection services)
 {
