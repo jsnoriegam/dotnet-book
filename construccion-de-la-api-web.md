@@ -129,7 +129,15 @@ La referencia **Microsoft.AspNetCore.All** del .csproj incluye todas las libreri
 </ItemGroup>
 ```
 
-Estas referencias nos permiten
+Estas referencias nos permiten utilizar las herramientas de línea de comandos **dotnet ef**.
+
+Además se incluye soporte para MS Sql Server, Sqlite e InMemory database.
+
+Si queremos agregar soporte para MySQL podemos agregar la referencia:
+
+```xml
+<PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="2.0.0-rtm-10056"/>
+```
 
 Para mayor profundización del tema puede visitar: [http://www.learnentityframeworkcore.com](http://www.learnentityframeworkcore.com)
 
@@ -288,7 +296,34 @@ public class PeliculasController : Controller
 
 La inyección de IPeliculasService se hace automáticamente si la implementación esta registrada en Startup.
 
-## 3.5 Todo en acción
+## 3.5 CORS
+
+Si nuestra API va a ser utilizada con clientes javascript es necesario registrar el filtro CORS para evitar problemas si es necesario que el cliente se encuentre en un dominio diferente.
+
+Una configuración básica de CORS la podemos hcer de la siguiente manera:
+
+En el método ConfigureServices de Startup agregamos lo siguiente antes de services.AddMvc\(\):
+
+```csharp
+services.AddCors(options =>
+{
+    options.AddPolicy("CorsPolicy",
+        builder => builder.AllowAnyOrigin()
+        .AllowAnyMethod()
+        .AllowAnyHeader()
+        .AllowCredentials());
+});
+```
+
+Y en el método Configure antes de app.UseMvc\(\):
+
+```csharp
+app.UseCors("CorsPolicy");
+```
+
+Mas información en: [https://docs.microsoft.com/en-us/aspnet/core/security/cors](https://docs.microsoft.com/en-us/aspnet/core/security/cors)
+
+## 3.6 Todo en acción
 
 El proyecto de ejemplo lo puede encontrar en github:
 

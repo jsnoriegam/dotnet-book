@@ -8,5 +8,7 @@ Para crear una suite de pruebas para nuesto proyecto debemos crear otro proyecto
 dotnet new mstest
 ```
 
+Para nuestro proyecto de Peliculas crearemos un directorio llamado Peliculas.Test.
+
 
 
