@@ -68,5 +68,17 @@ public class PeliculasController : Controller
 }
 ```
 
-Tambien podemos 
+Tambien podemos agregar el atributo a los métodos para un mayor nivel de personalización:
+
+```csharp
+[HttpDelete("{id}")]
+[Authorize(Roles = "ADMIN")]
+public IActionResult Delete([FromRoute] int id)
+{
+    PeliculasService.Eliminar(id);
+    return Ok();
+}
+```
+
+En este caso solo dejará efectuar la operación si el usuario tiene el Rol ADMIN.
 
