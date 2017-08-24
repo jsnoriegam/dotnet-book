@@ -82,3 +82,9 @@ public IActionResult Delete([FromRoute] int id)
 
 En este caso solo dejará efectuar la operación si el usuario tiene el Rol ADMIN.
 
+## 5.1 Generar un Token JWT
+
+Es necesario tener la capacidad de generar los tokens para 
+
+
+
