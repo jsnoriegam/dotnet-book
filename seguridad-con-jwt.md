@@ -207,6 +207,8 @@ Body:
 
 Para lo cual se debería obtener una respuesta similar a esta:
 
+**200 Ok**
+
 ```json
 {
 "token": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImp0aSI6IjRhODFkYzI1LWQ5YWItNDk5MS05Y2MyLTE5NTM2MTE0YmY1NCIsImlhdCI6MTUwMzExMzQ1MCwicm9sZXMiOlsiQURNSU4iLCJTVVBFUlVTVUFSSU8iXSwibmJmIjoxNTAzMTEzNDUwLCJleHAiOjE1MDMxMjA2NTAsImlzcyI6Ik1vdmllcyBBUEkiLCJhdWQiOiJQdWJsaWMifQ.qiK88t1w3cYZhqjS9TSnv-o9v3AUnvLpJVVxa9CBAxc",

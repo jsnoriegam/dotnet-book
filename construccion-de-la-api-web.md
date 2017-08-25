@@ -333,7 +333,36 @@ app.UseCors("CorsPolicy");
 
 Mas información en: [https://docs.microsoft.com/en-us/aspnet/core/security/cors](https://docs.microsoft.com/en-us/aspnet/core/security/cors)
 
-## 3.6 Todo en acción
+## 3.6 Validación
+
+El proceso de validación de las entidades se hace automáticamente al construir el objeto Película del parámetro según los atributos establecidos \(Ej. Required\), pero se deja a opción al desarrollador que paso seguir en caso de que no se cumpla alguna condicón.
+
+Para verificar si se pasó o no la validación debemos verificar el estado de ModelState:
+
+```csharp
+[HttpPost]
+public IActionResult Post([FromBody] Pelicula pelicula)
+{
+    if (ModelState.IsValid)
+    {
+        PeliculasService.Agregar(pelicula);
+        return Ok();
+    }
+    else
+    {
+        return StatusCode(409, ModelState.ToDictionary(
+            ma => ma.Key,
+            ma => ma.Value.Errors.Select(e => e.ErrorMessage).ToList()
+        ));
+    }
+}
+```
+
+## 3.7 Vistas
+
+A veces es necesario per
+
+## 3.8 Todo en acción
 
 El proyecto de ejemplo lo puede encontrar en github:
 
