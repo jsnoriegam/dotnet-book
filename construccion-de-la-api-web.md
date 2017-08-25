@@ -358,9 +358,9 @@ public IActionResult Post([FromBody] Pelicula pelicula)
 }
 ```
 
-## 3.7 Vistas
+## 3.7 Presentación de la respuesta
 
-A veces es necesario per
+A veces es necesario cambiar la forma 
 
 ## 3.8 Todo en acción
 
