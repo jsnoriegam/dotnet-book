@@ -198,7 +198,11 @@ Para probar si el controlador funciona utilizamos nuestro cliente HTTP preferido
 Method: POST
 Headers:
     Content-Type: application/json
-    Body: { "username": "admin", "password": "admin" }
+Body: 
+    {
+        "username": "admin",
+        "password": "admin"
+    }
 ```
 
 Para lo cual se debería obtener una respuesta similar a esta:
