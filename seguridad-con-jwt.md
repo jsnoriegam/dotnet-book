@@ -80,11 +80,115 @@ public IActionResult Delete([FromRoute] int id)
 }
 ```
 
-En este caso solo dejará efectuar la operación si el usuario tiene el Rol ADMIN.
+En este caso solo dejará efectuar la operación si el usuario tiene el Rol ADMIN. En el siguitente tema se muestra como se registran los roles en un token.
 
 ## 5.1 Generar un Token JWT
 
-Es necesario tener la capacidad de generar los tokens para 
+Ahora es necesario tener la capacidad de generar el token que vamos a utilizar para autenticar las peticiones que realizamos a la API.
 
+La forma mas sencilla es crear un controlador que reciba un usuario y un password y nos retorne dicho token:
 
+```csharp
+[Route("api/v1/[controller]")]
+public class AuthController : Controller
+{
+    IAuthService AuthService;
+
+    public AuthController(IAuthService authService)
+    {
+        AuthService = authService;
+    }
+    [HttpPost("token")]
+    public IActionResult Token([FromBody] UserContext context)
+    {
+        if (ModelState.IsValid && AuthService.ValidateUser(context.Username, context.Password))
+        {
+            var now = DateTime.UtcNow;
+            var validTime = TimeSpan.FromHours(2);
+            var expires = now.Add(validTime);
+            var token = AuthService.GenerateAccessToken(now, context.Username, validTime);
+            return Ok(new {
+                Token = token,
+                ExpiresAt = expires
+            });
+        }
+        else
+        {
+            return StatusCode(401);
+        }
+    }
+}
+
+public class UserContext
+{
+    [Required]
+    public string Username { get; set; }
+    [Required]
+    public string Password { get; set; }
+}
+```
+
+La clase UserContext se utiliza para recibir los datos de la petición.
+
+```csharp
+public class AuthService : IAuthService
+{
+    AuthSettings Settings;
+
+    public AuthService(IOptions<AuthSettings> options)
+    {
+        Settings = options.Value;
+    }
+    // Utilice su propia lógica de validación de usuarios
+    public bool ValidateUser(string username, string password)
+    {
+        return username.Equals("admin") && password.Equals("admin");
+    }
+    public string GenerateAccessToken(DateTime now, string username, TimeSpan validtime)
+    {
+        var expires = now.Add(validtime);
+        var claims = new Claim[]
+        {
+                new Claim(JwtRegisteredClaimNames.Sub, username),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new Claim(
+                    JwtRegisteredClaimNames.Iat,
+                    new DateTimeOffset(now).ToUniversalTime().ToUnixTimeSeconds().ToString(),
+                    ClaimValueTypes.Integer64
+                ),
+                new Claim(
+                    "roles",
+                    "ADMIN"
+                ),
+                new Claim(
+                    "roles",
+                    "SUPERUSUARIO"
+                )
+        };
+        var signingCredentials = new Microsoft.IdentityModel.Tokens.SigningCredentials(
+            new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Settings.SigningKey)),
+            SecurityAlgorithms.HmacSha256Signature
+        );
+        var jwt = new JwtSecurityToken(
+            issuer: Settings.Issuer,
+            audience: Settings.Audience,
+            claims: claims,
+            notBefore: now,
+            expires: expires,
+            signingCredentials: signingCredentials
+        );
+        var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
+        return encodedJwt;
+    }
+}
+
+public interface IAuthService {
+    bool ValidateUser(string username, string password);
+    string GenerateAccessToken(DateTime now, string username, TimeSpan validtime);
+}
+```
+
+El claim **roles **se utiliza para registrar uno o mas roles asociados al token.
+
+Cabe anotar que generamos los tiempos utilizando UTC para tener un mejor control del tiempo de vida del token.
 
