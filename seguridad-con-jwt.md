@@ -192,3 +192,29 @@ El claim **roles **se utiliza para registrar uno o mas roles asociados al token.
 
 Cabe anotar que generamos los tiempos utilizando UTC para tener un mejor control del tiempo de vida del token.
 
+Para probar si el controlador funciona utilizamos nuestro cliente HTTP preferido:
+
+```
+Method: POST
+Headers:
+    Content-Type: application/json
+    Body: { "username": "admin", "password": "admin" }
+```
+
+Para lo cual se debería obtener una respuesta similar a esta:
+
+```json
+{
+"token": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImp0aSI6IjRhODFkYzI1LWQ5YWItNDk5MS05Y2MyLTE5NTM2MTE0YmY1NCIsImlhdCI6MTUwMzExMzQ1MCwicm9sZXMiOlsiQURNSU4iLCJTVVBFUlVTVUFSSU8iXSwibmJmIjoxNTAzMTEzNDUwLCJleHAiOjE1MDMxMjA2NTAsImlzcyI6Ik1vdmllcyBBUEkiLCJhdWQiOiJQdWJsaWMifQ.qiK88t1w3cYZhqjS9TSnv-o9v3AUnvLpJVVxa9CBAxc",
+"expiresAt": "2017-08-19T05:30:50.3300999Z"
+}
+```
+
+Para utilizar el token solo debemos añadir el header Authorization a cada una de nuestras peticiones, con el identificador Bearer seguido del token.
+
+```
+Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImp0aSI6IjRhODFkYzI1LWQ5YWItNDk5MS05Y2MyLTE5NTM2MTE0YmY1NCIsImlhdCI6MTUwMzExMzQ1MCwicm9sZXMiOlsiQURNSU4iLCJTVVBFUlVTVUFSSU8iXSwibmJmIjoxNTAzMTEzNDUwLCJleHAiOjE1MDMxMjA2NTAsImlzcyI6Ik1vdmllcyBBUEkiLCJhdWQiOiJQdWJsaWMifQ.qiK88t1w3cYZhqjS9TSnv-o9v3AUnvLpJVVxa9CBAxc
+```
+
+
+

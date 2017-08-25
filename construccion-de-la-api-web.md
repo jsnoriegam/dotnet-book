@@ -337,3 +337,7 @@ Mas información en: [https://docs.microsoft.com/en-us/aspnet/core/security/cors
 
 El proyecto de ejemplo lo puede encontrar en github:
 
+Podemos utilizar extensiones como Restlet o Postman de chorme para realizar pruebas a la API:
+
+
+
