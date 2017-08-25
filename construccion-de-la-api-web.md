@@ -339,5 +339,47 @@ El proyecto de ejemplo lo puede encontrar en github:
 
 Podemos utilizar extensiones como Restlet o Postman de chorme para realizar pruebas a la API:
 
+Petición:
+
+```
+URL: <direccion-api>/api/v1/peliculas
+Method: POST
+Headers:
+    Content-Type: application/json
+Body:
+    { 
+        "nombre" : "Batman v Superman: Dawn of Justice",
+        "codigoIMDB" : "tt2975590",
+        "resumen" : "Fearing that the actions of Superman are left unchecked, Batman takes on the Man of Steel, while the world wrestles with what kind of a hero it really needs."
+    }
+```
+
+Respuesta:
+
+**200 Ok**
+
+Petición:
+
+```
+URL: <direccion-api>/api/v1/peliculas
+Method: GET
+```
+
+Respuesta:
+
+**200 Ok**
+
+```
+[
+    {
+        "id":1,
+        "nombre":"Batman v Superman: Dawn of Justice",
+        "codigoIMDB":"tt2975590",
+        "resumen":"Fearing that the actions of Superman are left unchecked, Batman takes on the Man of Steel, while the world wrestles with what kind of a hero it really needs.",
+        "director": null
+    }
+]
+```
+
 
 
