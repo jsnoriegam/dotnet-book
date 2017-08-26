@@ -360,7 +360,51 @@ public IActionResult Post([FromBody] Pelicula pelicula)
 
 ## 3.7 Presentación de la respuesta
 
-A veces es necesario cambiar la forma 
+A veces es necesario cambiar la forma en que presentamos los datos, ya sea para mostrar u ocultar información, o para evitar problemas como referencias circulares.  En estos casos se puede implementar una solucón creando un DTO utilizando una herramienta como Automapper, o una solución mas sencilla es encapsular el objeto original en un wrapper \(estilo delegado\) y crear getters solo a los datos que se deseen mostrar.
+
+```csharp
+public class PeliculaWrapperView
+{
+    protected Pelicula Pelicula;
+    public PeliculaWrapperView(Pelicula pelicula)
+    {
+        Pelicula = pelicula;
+    }
+
+    public int Id { get => Pelicula.Id; }
+    public string Nombre { get => Pelicula.Nombre; }
+    public string CodigoIMDB { get => Pelicula.CodigoIMDB; }
+    public string Resumen { get => Pelicula.Resumen; }
+    public PersonaWrapperPeliculaView Director { get => new PersonaWrapperPeliculaView(Pelicula.Director); }
+}
+
+public class PersonaWrapperPeliculaView {
+    Persona Persona;
+    public PersonaWrapperPeliculaView(Persona persona)
+    {
+        Persona = persona;
+    }
+    public int Id { get => Persona.Id; }
+    public string NombreCompleto { get => Persona.NombreCompleto; }
+    public string CodigoIMDB { get => Persona.CodigoIMDB; }
+}
+```
+
+Luego solo es cuestión de modificar los servicios necesarios:
+
+```csharp
+public PeliculaWrapperView Obtener(int id) {
+    return new PeliculaWrapperView(Context.Peliculas.Include(p => p.Director).First(p => p.Id == id));
+}
+public List<PeliculaWrapperView> ObtenerListado()
+{
+    //Es necesario referenciar System.Linq
+    //Include p.Director genera internamete un JOIN en la consulta
+    return Context.Peliculas.AsNoTracking().Include(p => p.Director).Select(p => new PeliculaWrapperView(p)).ToList();
+}
+```
+
+Es necesario desactivar la generación de proxies con .AsNoTracking\(\) para poder utilizar el wrapper sobre una consulta con Linq, ya que estamos reemplazando la entidad real por otro objeto.
 
 ## 3.8 Todo en acción
 
