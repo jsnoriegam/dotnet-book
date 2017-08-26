@@ -408,7 +408,7 @@ Es necesario desactivar la generación de proxies con .AsNoTracking\(\) para pod
 
 ## 3.8 Todo en acción
 
-El proyecto de ejemplo lo puede encontrar en github:
+El proyecto de ejemplo lo puede encontrar en github: [https://github.com/jsnoriegam/dotnetmovies2.git](https://github.com/jsnoriegam/dotnetmovies2.git)
 
 Podemos utilizar extensiones como Restlet o Postman de chorme para realizar pruebas a la API:
 
