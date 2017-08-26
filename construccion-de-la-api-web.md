@@ -308,7 +308,7 @@ La inyección de IPeliculasService se hace automáticamente si la implementació
 
 ## 3.5 CORS
 
-Si nuestra API va a ser utilizada con clientes javascript es necesario registrar el filtro CORS para evitar problemas si es necesario que el cliente se encuentre en un dominio diferente.
+Si nuestra API va a ser utilizada con clientes javascript es necesario registrar el filtro CORS para evitar problemas en caso de que sea necesario que el cliente se encuentre en un dominio diferente.
 
 Una configuración básica de CORS la podemos hcer de la siguiente manera:
 
@@ -335,7 +335,7 @@ Mas información en: [https://docs.microsoft.com/en-us/aspnet/core/security/cors
 
 ## 3.6 Validación
 
-El proceso de validación de las entidades se hace automáticamente al construir el objeto Película del parámetro según los atributos establecidos \(Ej. Required\), pero se deja a opción al desarrollador que paso seguir en caso de que no se cumpla alguna condicón.
+El proceso de validación de las entidades se hace automáticamente al momento de construir el objeto de tipo Película que se inyectará en el parámetro del método **Post** según los atributos establecidos en la entidad\(Ej. Required\), pero se deja a opción al desarrollador que pasos seguir en caso de que no se cumpla alguna de las resticciones.
 
 Para verificar si se pasó o no la validación debemos verificar el estado de ModelState:
 
