@@ -277,7 +277,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-_Para el caso del proyecto de ejemplo vamos a trabajar con los repositorios como si se tratara de servicios, puesto que son pocos y no hay procesos que involucren varias entidades, pero es recomendable sobre todo para proyectos mediamos y/o grandes, establecer una clara separación entre servicios y repositorios._
+> _Para el caso del proyecto de ejemplo vamos a trabajar con los repositorios como si se tratara de servicios, puesto que son pocos y no hay procesos que involucren varias entidades, pero es recomendable sobre todo para proyectos mediamos y/o grandes, establecer una clara separación entre servicios y repositorios._
 
 ### 3.4.2 Repositorios
 
