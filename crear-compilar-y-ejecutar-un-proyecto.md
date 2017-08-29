@@ -97,7 +97,7 @@ El proceso de detener la aplicacion compilarla y volverla a ejecutar cada vez qu
 Esta herramienta nos permite ejecutar el comando:
 
 ```
-dotnet watch
+dotnet watch run
 ```
 
 El cual se encarga de ejecutar el proyecto y se mantiene activo en background y cuando detecta un cambio se encarga de detener, recompilar y volver a ejecutar.
