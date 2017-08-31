@@ -119,17 +119,17 @@ En el ejemplo anterior podemos ver como los métodos Get retornan objetos o arre
 Para estos casos podemos hacer que los métodos en los controladores retornen un objeto **IActionResult**, utilizando uno de los métodos utilitarios disponibles en la clase Controller como **Ok**, o **NotFound**.
 
 ```csharp
-[HttpPost]
-public IActionResult Post([FromBody] Pelicula pelicula)
+[HttpGet("{id}")]
+public IActionResult Get([FromRoute] int id)
 {
-    if (ModelState.IsValid)
+    PeliculaWrapperView pelicula = PeliculasService.Obtener(id);
+    if (pelicula != null)
     {
-        PeliculasService.Agregar(pelicula);
-        return Ok();
+        return Ok(pelicula);
     }
     else
     {
-        return StatusCode(409, ModelState);
+        return NotFound();
     }
 }
 ```
