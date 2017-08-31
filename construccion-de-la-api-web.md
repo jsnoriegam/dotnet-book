@@ -129,12 +129,7 @@ public IActionResult Post([FromBody] Pelicula pelicula)
     }
     else
     {
-        // Utilizo ToDictionary para obtener solo los datos relevantes del ModelState
-        // Para usar ToDictionary se requere System.Linq
-        return StatusCode(409, ModelState.ToDictionary(
-            ma => ma.Key,
-            ma => ma.Value.Errors.Select(e => e.ErrorMessage).ToList()
-        ));
+        return StatusCode(409, ModelState);
     }
 }
 ```
