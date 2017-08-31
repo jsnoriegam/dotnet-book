@@ -114,9 +114,9 @@ El proyecto esta configurado para serializar los arreglos/objetos retornados por
 
 ### 3.2.1 IActionResult
 
-En el ejemplo anterior podemos ver como los métodos Get retornan objetos o arreglos.  Estos objetos como ya se menció serán transformados a JSON, pero ¿qué pasa si necesitamos mas control sobre las respuestas? Por ejemplo, ¿como hacemos para mandar un error de validación?
+En el ejemplo anterior podemos ver como los métodos Get retornan objetos o arreglos.  Estos objetos como ya se menció serán transformados a JSON, pero ¿qué pasa si necesitamos mas control sobre las respuestas? Por ejemplo, ¿como hacemos para informar de errores de validación?
 
-
+Para estos casos podemos hacer que los métodos en los controladores retornen un objeto **IActionResult**, utilizando uno de los métodos utilitarios disponibles en la clase Controller como **Ok**, o **NotFound**.
 
 ## 3.3 Entity Framework
 
