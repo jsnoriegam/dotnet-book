@@ -237,6 +237,8 @@ Lo ideal es no asociar el DbContext con ningún conector de base de datos en par
 
 El DbContext debe ser registrado en la clase Startup para que pueda ser utilizado por los repositorios.  En este momento se establece que motor de base de datos se utilizará.
 
+> Es posible manejar varias Bases de datos utilizando multiples DbContex pero las herramientas de linea de comando solo perminen utilizar uno por lo que no podria usar migraciones solamente Database.EnsureCreated\(\), por lo tanto para cada cambio en las entidades tendría que borrar la base para que el framework la recree o hacer los cambios manualmente.
+
 Las cadenas de conexión podemos registrarla en appsettings.json:
 
 ```json
