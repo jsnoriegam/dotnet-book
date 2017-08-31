@@ -72,7 +72,7 @@ dotnet restore
 
 ## 2.2 Compilar y ejecutar un proyecto
 
-Para compilar nustro proyeco simplemente ejecutamos el comando:
+Para compilar nuestro proyecto simplemente ejecutamos el comando:
 
 ```
 dotnet build
