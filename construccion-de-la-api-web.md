@@ -116,7 +116,7 @@ El proyecto esta configurado para serializar los arreglos/objetos retornados por
 
 En el ejemplo anterior podemos ver como los métodos Get retornan objetos o arreglos.  Estos objetos como ya se menció serán transformados a JSON, pero ¿qué pasa si necesitamos mas control sobre las respuestas? Por ejemplo, ¿como hacemos para informar de errores de validación?
 
-Para estos casos podemos hacer que los métodos en los controladores retornen un objeto **IActionResult**, utilizando uno de los métodos utilitarios disponibles en la clase Controller como **Ok**, o **NotFound**.
+Para estos casos podemos hacer que los métodos en los controladores retornen un objeto **IActionResult** \([https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.mvc.iactionresult](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.mvc.iactionresult)\), utilizando uno de los métodos utilitarios disponibles en la clase Controller como **Ok**, **Created** o **NotFound**.
 
 ```csharp
 [HttpGet("{id}")]
