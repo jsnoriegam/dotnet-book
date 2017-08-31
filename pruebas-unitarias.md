@@ -38,7 +38,6 @@ O podemos agregar manualmente la referencia directamente en el .csproj del proye
   </ItemGroup>
 
 </Project>
-
 ```
 
 Luego solo debemos crear las clases con los métodos que efectuaran las pruebas correspondientes. Se recomienda crear una clase para cada servicio del proyecto referenciado.
@@ -101,6 +100,12 @@ Una vez tengamos definidos todas las pruebas ejecutamos:
 
 ```
 dotnet test
+```
+
+O si tenemos instalado watcher, podemos ejecutar:
+
+```
+dotnet watch test
 ```
 
 
