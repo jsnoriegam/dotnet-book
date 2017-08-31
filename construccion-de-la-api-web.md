@@ -118,6 +118,27 @@ En el ejemplo anterior podemos ver como los métodos Get retornan objetos o arre
 
 Para estos casos podemos hacer que los métodos en los controladores retornen un objeto **IActionResult**, utilizando uno de los métodos utilitarios disponibles en la clase Controller como **Ok**, o **NotFound**.
 
+```csharp
+[HttpPost]
+public IActionResult Post([FromBody] Pelicula pelicula)
+{
+    if (ModelState.IsValid)
+    {
+        PeliculasService.Agregar(pelicula);
+        return Ok();
+    }
+    else
+    {
+        // Utilizo ToDictionary para obtener solo los datos relevantes del ModelState
+        // Para usar ToDictionary se requere System.Linq
+        return StatusCode(409, ModelState.ToDictionary(
+            ma => ma.Key,
+            ma => ma.Value.Errors.Select(e => e.ErrorMessage).ToList()
+        ));
+    }
+}
+```
+
 ## 3.3 Entity Framework
 
 La referencia **Microsoft.AspNetCore.All** del .csproj incluye todas las librerias necesarias para trabajar con Entity Framework Core, pero si queremos activar las herramientas de línea de comandos debemos agregar:
