@@ -378,7 +378,7 @@ public IActionResult Post([FromBody] Pelicula pelicula)
 
 ## 3.7 Presentación de la respuesta
 
-A veces es necesario cambiar la forma en que presentamos los datos, ya sea para mostrar u ocultar información, o para evitar problemas como referencias circulares.  En estos casos se puede implementar una solucón creando un DTO utilizando una herramienta como Automapper, o una solución mas sencilla es encapsular el objeto original en un wrapper \(estilo delegado\) y crear getters solo a los datos que se deseen mostrar.
+A veces es necesario cambiar la forma en que presentamos los datos, ya sea para mostrar u ocultar información, o para evitar problemas como referencias circulares.  En estos casos se puede implementar una solución creando un DTO utilizando una herramienta como Automapper, o una solución mas sencilla es encapsular el objeto original en un wrapper \(estilo delegado\) y crear getters solo a los datos que se deseen mostrar.
 
 ```csharp
 public class PeliculaWrapperView
