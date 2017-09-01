@@ -426,6 +426,19 @@ public List<PeliculaWrapperView> ObtenerListado()
 
 Es necesario desactivar la generación de proxies con .AsNoTracking\(\) para poder utilizar el wrapper sobre una consulta con Linq, ya que estamos reemplazando la entidad real por otro objeto.
 
+### 3.7.1 XML
+
+Si desea que la API trabaje con XML además de JSON debe cambiar la línea **services.AddMvc\(\)** en el Startup para que quede de la siguiente forma:
+
+```csharp
+services.AddMvc(options => {
+    options.OutputFormatters.Add(new XmlDataContractSerializerOutputFormatter());
+    options.InputFormatters.Add(new XmlDataContractSerializerInputFormatter());
+});
+```
+
+De esta manera el sistema reconocerá tanto JSON como XML según lo referenciado en los encabezados Content-Type y Accept.
+
 ## 3.8 Todo en acción
 
 El proyecto de ejemplo lo puede encontrar en github: [https://github.com/jsnoriegam/dotnetmovies2.git](https://github.com/jsnoriegam/dotnetmovies2.git)
