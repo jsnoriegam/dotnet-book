@@ -332,7 +332,7 @@ Si nuestra API va a ser utilizada con clientes javascript es necesario registrar
 
 Una configuración básica de CORS la podemos hcer de la siguiente manera:
 
-En el método ConfigureServices de Startup agregamos lo siguiente antes de services.AddMvc\(\):
+En el método **ConfigureServices **de Startup agregamos lo siguiente antes de services.AddMvc\(\):
 
 ```csharp
 services.AddCors(options =>
@@ -345,7 +345,7 @@ services.AddCors(options =>
 });
 ```
 
-Y en el método Configure antes de app.UseMvc\(\):
+Y en el método **Configure **antes de app.UseMvc\(\):
 
 ```csharp
 app.UseCors("CorsPolicy");
