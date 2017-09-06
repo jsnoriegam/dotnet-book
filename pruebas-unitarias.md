@@ -94,7 +94,7 @@ public class UnitTestPeliculasService
 
 Debemos marcar cada clase de pruebas con el atributo **TestClass** y cada método con el atributo **TestMethod**, si necesitamos ejecutar un proceso para cada prueba podemos marcar un método con **TestInitialize**.
 
-Cabe resaltar que configuramos el context con UseInMemoryDatabase para asegurar la predictibilidad y el correcto funcionamiento de las pruebas.
+Cabe resaltar que configuramos el context con UseInMemoryDatabase para simular la base de datos en memoria con el objetivo de asegurar la predictibilidad y el correcto funcionamiento de las pruebas.
 
 Una vez tengamos definidos todas las pruebas ejecutamos:
 
