@@ -49,6 +49,7 @@ public class UnitTestPeliculasService
     PeliculasContext Context;
     IPeliculasService PeliculasService;
     public UnitTestPeliculasService() {
+        // Una base de datos en memoria se borra cuando la aplicación termina de ejecutar
         Context = new PeliculasContext(new DbContextOptionsBuilder<PeliculasContext>().UseInMemoryDatabase(databaseName: "Peliculas").Options);
         PeliculasService = new PeliculasService(Context);
     }
