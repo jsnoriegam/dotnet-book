@@ -303,7 +303,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ### 3.4.2 Repositorios
 
-Los Repositorios son un tipo especial de servicios cuya finalidad es exponer las operaciones básicas de los repositorios de datos \(tablas\).
+Las clases Repositorios son un tipo especial de clases de servicios cuya finalidad es exponer las operaciones básicas de los repositorios de datos \(generalmente tablas de una bd\).
 
 Por lo general los repositorios solo tienen funciones que implican operaciones analogas a un listado: obtenerUno, obtenerTodos, agregar, reemplazar y eliminar aunque pueden tener otras mientras sean sobre la misma entidad.
 
