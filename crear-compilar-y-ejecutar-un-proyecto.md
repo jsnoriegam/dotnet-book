@@ -100,5 +100,5 @@ Esta herramienta nos permite ejecutar el comando:
 dotnet watch run
 ```
 
-El cual se encarga de ejecutar el proyecto y se mantiene activo en background y cuando detecta un cambio se encarga de detener, recompilar y volver a ejecutar.
+El cual se encarga de ejecutar el proyecto y se mantiene activo en background y cuando detecta un cambio se encarga de hacer el proceso de detener, recompilar y volver a ejecutar el proyecto.
 
