@@ -35,7 +35,9 @@ services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 });
 ```
 
-Los datos de configuración deben estar en appsettings.json:
+Básicamente debemos establecer que vamos a validar del token y la llave que vamos a utilizar para encriptarlo, los datos del ejemplo son lo mínimo recomendado.
+
+Los datos de configuración podemos incluirlos en appsettings.json:
 
 ```json
 "AuthenticationSettings": {
@@ -47,15 +49,15 @@ Los datos de configuración deben estar en appsettings.json:
 
 Tenga en cuenta que la llave NO debe ser de conocimiento público y debe ser mantenida en secreto.
 
-Luego dentro del método Configure activamos el filtro agregando:
+Luego dentro del método **Configure **activamos el filtro JWT agregando:
 
 ```csharp
 app.UseAuthentication();
 ```
 
-antes de app.UseMvc\(\).
+antes de la llamada a **app.UseMvc\(\)**.
 
-Para establecer que un controlador debe ser autenticado debemos agregar el atributo Authorize al controlador:
+Para establecer que un controlador debe requiere autorización debemos agregar el atributo Authorize al controlador:
 
 ```csharp
 [Authorize]
@@ -130,6 +132,8 @@ public class UserContext
 
 La clase UserContext se utiliza para recibir los datos de la petición.
 
+Luego creamos la clase **AuthService **en la cual efectuaremos la validación de las credenciales y generaremos el correspondiente token:
+
 ```csharp
 public class AuthService : IAuthService
 {
@@ -188,7 +192,9 @@ public interface IAuthService {
 }
 ```
 
-El claim **roles **se utiliza para registrar uno o mas roles asociados al token.
+El claim **roles **se utiliza para registrar uno o mas roles asociados al token y es requerido para poder utilizar: **\[Authorize\(Roles = "ADMIN"\)\]**.
+
+> Tenga en cuenta que **roles **no hace parte de los nombres registrados para claims en la especificación de JWT \([https://tools.ietf.org/html/rfc7519\#section-4.1](https://tools.ietf.org/html/rfc7519#section-4.1)\).  Lo cual no implica en ningún momento que sea inválido.
 
 Cabe anotar que generamos los tiempos utilizando UTC para tener un mejor control del tiempo de vida del token.
 
