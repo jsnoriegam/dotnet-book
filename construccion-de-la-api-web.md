@@ -265,13 +265,15 @@ public void ConfigureServices(IServiceCollection services)
 
 ### 3.1.2 Dotnet ef
 
-Para transformar las entidades en una base de datos se utiliza el comando dotnet ef, lo mas común es hacer migraciones para cada cambio que se haga a las entidades:
+Para transformar las entidades en una base de datos se utiliza el comando dotnet ef, lo mas recomendable es hacer migraciones para cada cambio que se haga a las entidades:
 
 ```
 dotnet ef migrations add <Nombre-de-la-migracion>
 ```
 
 Con este comando se creará el directorio Migrations en nuestro proyecto y las clases que permitiran la generación automática del esquema en la base de datos.
+
+De esta forma podemos llevar un registro de todos los cambios que se han hecho sobre el modelo de datos \(y la base de datos\).
 
 Para ejecutar las migraciones se utiliza:
 
