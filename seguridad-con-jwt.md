@@ -1,8 +1,10 @@
 # Seguridad con JWT
 
-La seguridad es un aspecto muy importante para una API web y debe ser implementada de tal manera que podemos seguir manteniedo un esquema RESTful.
+La seguridad es un aspecto muy importante para una API web y debe ser implementada de tal manera que podemos seguir manteniendo un esquema RESTful.
 
 Para esto vamos a utilizar JWT \([https://jwt.io/introduction/](https://jwt.io/introduction/)\).
+
+Es recomendable \(o casi obligatorio\) configurar el servidor de producción para que utilice una conexión encriptada ssl/tls \(https\) para que el sistema tenga un grado de confianza real en seguridad de la información.  Pero para el desarrollo de la API la utilización de http no genera ningún inconveniente.
 
 ## 5.1 Configuración de Startup
 
